@@ -1,0 +1,12 @@
+[Unit]
+Description=AutoSSH tunnel service on local port
+After=network.target
+
+[Service]
+Environment="AUTOSSH_GATETIME=0"
+ExecStart=/usr/bin/autossh -C -M 0 -v -N -o "ServerAliveInterval=60" -R subdomain.domain.com:80:localhost:80 serveo.net
+User=root
+Group=root
+
+[Install]
+WantedBy=multi-user.target
